@@ -25,7 +25,7 @@ namespace Blog.Data.UnitOfWorks
         static UnitOfWork()
         {
             _sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("UnitOfWorkExample")))
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
                 .Mappings(x => x.AutoMappings.Add(
                     AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
