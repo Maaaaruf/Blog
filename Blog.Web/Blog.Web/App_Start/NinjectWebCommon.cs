@@ -5,7 +5,9 @@ namespace Blog.Web.App_Start
 {
     using System;
     using System.Web;
-
+    using Blog.Data.UnitOfWorks;
+    using Blog.Framework;
+    using Ninject.Extensions.Conventions;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -61,6 +63,11 @@ namespace Blog.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+
+
+            kernel.Bind(x => x.FromAssembliesMatching("*").SelectAllClasses().Excluding<UnitOfWork>().BindDefaultInterface());
+
+        }
     }
 }
