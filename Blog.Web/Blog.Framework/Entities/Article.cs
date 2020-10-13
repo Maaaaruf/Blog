@@ -9,7 +9,19 @@ namespace Blog.Framework.Entities
     public class Article : IEntity
     {
         public virtual int Id { get; set; }
-        public virtual string Tittle { get; set; }
-        public virtual string Body { get; set; }
+
+        public virtual string Title { get; set; }
+
+        public virtual string ShortDescription { get; set; }
+
+        public virtual string Description { get; set; }
+
+        public virtual bool Published { get; set; }
+
+        public virtual DateTime PostedOn { get; set; }
+
+        public virtual DateTime? Modified { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }
