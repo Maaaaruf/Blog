@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Blog.Framework.Entities;
+using Blog.Framework.Services;
+using Blog.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,25 +9,35 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        private IArticleService _articleService;
+        private ICategoryService _categoryService;
+
+        public HomeController(IArticleService articleService, ICategoryService categoryService)
+        {
+            _articleService = articleService;
+            _categoryService = categoryService;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
+            // ensure there are products for the example
+            //if (!_articleService.GetAll().Any())
+            //{
+                _articleService.Create(new Article { Title = "Learn Core MVC" , PostedOn = DateTime.Now });
+                _articleService.Create(new Article { Title = "Learn nHibernet", PostedOn = DateTime.Now });
+                _articleService.Create(new Article { Title = "Learn ASP.NET MVC", PostedOn = DateTime.Now });
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            _categoryService.Create(new Category {  Name = "MVC"});
+            _categoryService.Create(new Category { Name = "nHibernet"});
+            _categoryService.Create(new Category { Name = "ASP.NET MVC" });
+            //}
 
-            return View();
-        }
+            var model = new ArticleModel();
+            model.Articles = _articleService.GetAll();
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(model);
         }
     }
 }

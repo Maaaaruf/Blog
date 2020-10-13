@@ -9,71 +9,77 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
-    public class CategoryController : BaseController
+    public class ArticleController : Controller
     {
-        private ICategoryService _categoryService;
+        private IArticleService _articleService;
 
-        public CategoryController(ICategoryService categoryService)
+        public ArticleController(IArticleService articleService)
         {
-            _categoryService = categoryService;
+            _articleService = articleService;
         }
 
+        // GET: Article
         public ActionResult Index()
         {
-            IList<Category> model = _categoryService.GetAll();
+            var model = new ArticleModel();
+            model.Articles = _articleService.GetAll();
+            
             return View(model);
         }
+
 
         public ActionResult Create()
         {
-            var model = new CategoryModel();
+            var model = new ArticleModel();
             return View(model);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CategoryModel model)
+        public ActionResult Create(ArticleModel model)
         {
             if (ModelState.IsValid)
             {
-                _categoryService.Create(new Category
+                _articleService.Create(new Article
                 {
-                    Name = model.Name
+                    Title = model.Title,
+                    Description = model.Description,
+                    PostedOn = DateTime.UtcNow.AddHours(6),
                 });
                 return RedirectToAction("Index");
             }
             return View(model);
         }
 
-        
+
         public ActionResult Edit(int id)
         {
-            var data = _categoryService.GetById(id);
-            var model = new CategoryModel { Name = data.Name };
+            var data = _articleService.GetById(id);
+            var model = new ArticleModel { Title = data.Title, Description = data.Description, Id = data.Id };
             return View(model);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CategoryModel model)
+        public ActionResult Edit(ArticleModel model)
         {
             if (ModelState.IsValid)
             {
-                _categoryService.Update(new Category
-                {
-                    Id = model.Id,
-                    Name = model.Name
-                });
+                new ArticleModel { 
+                    Title = model.Title, Description = model.Description, Id = model.Id };
                 return RedirectToAction("Index");
             }
             return View(model);
         }
+
+
+
 
         public ActionResult Delete(int id)
         {
-            _categoryService.Delete(id);
+            _articleService.Delete(id);
             return RedirectToAction("Index");
         }
     }

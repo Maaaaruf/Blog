@@ -12,16 +12,11 @@ namespace Blog.Framework.Entities
 
         public virtual string Title { get; set; }
 
-        public virtual string ShortDescription { get; set; }
-
         public virtual string Description { get; set; }
-
-        public virtual bool Published { get; set; }
 
         public virtual DateTime PostedOn { get; set; }
 
-        public virtual DateTime? Modified { get; set; }
-
         public virtual Category Category { get; set; }
+        //public virtual int Category_Id { get; set; }
     }
 }

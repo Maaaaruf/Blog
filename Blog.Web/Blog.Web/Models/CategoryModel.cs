@@ -1,15 +1,15 @@
-﻿
-
+﻿using Blog.Framework.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Blog.Framework.Entities
+namespace Blog.Web.Models
 {
-    public class Category : IEntity
+    public class CategoryModel
     {
         public virtual int Id { get; set; }
 
         public virtual string Name { get; set; }
-
-        public virtual IList<Article> Articles { get; set; }
     }
 }
