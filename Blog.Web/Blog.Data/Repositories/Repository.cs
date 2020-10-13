@@ -1,4 +1,5 @@
-﻿using Blog.Data.UnitOfWorks;
+﻿using Blog.Data.Configurations;
+using Blog.Data.UnitOfWorks;
 using Blog.Framework;
 using Blog.Framework.Entities;
 using Blog.Framework.Repositories;

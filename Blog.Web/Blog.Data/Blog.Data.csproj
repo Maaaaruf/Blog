@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Configurations\AutoMappingConfiguration.cs" />
+    <Compile Include="Configurations\ConnectionHelper.cs" />
     <Compile Include="Mapping\ArticleOverride.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
