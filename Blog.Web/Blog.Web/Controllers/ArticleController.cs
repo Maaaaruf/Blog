@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
         private IArticleService _articleService;
 
@@ -67,14 +67,17 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                new ArticleModel { 
-                    Title = model.Title, Description = model.Description, Id = model.Id };
+                Article article = new Article { 
+                    Title = model.Title, 
+                    Description = model.Description, 
+                    Id = model.Id,
+                    PostedOn = DateTime.UtcNow.AddHours(6)
+                };
+                _articleService.Update(article);
                 return RedirectToAction("Index");
             }
             return View(model);
         }
-
-
 
 
         public ActionResult Delete(int id)
