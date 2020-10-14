@@ -9,10 +9,12 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
+    [Authorize]
     public class CategoryController : BaseController
     {
         private ICategoryService _categoryService;
 
+        
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;

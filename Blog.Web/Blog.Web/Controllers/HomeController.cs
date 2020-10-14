@@ -25,13 +25,13 @@ namespace Blog.Web.Controllers
             // ensure there are products for the example
             //if (!_articleService.GetAll().Any())
             //{
-                _articleService.Create(new Article { Title = "Learn Core MVC" , PostedOn = DateTime.Now });
-                _articleService.Create(new Article { Title = "Learn nHibernet", PostedOn = DateTime.Now });
-                _articleService.Create(new Article { Title = "Learn ASP.NET MVC", PostedOn = DateTime.Now });
+            //    _articleService.Create(new Article { Title = "Learn Core MVC" , PostedOn = DateTime.Now });
+            //    _articleService.Create(new Article { Title = "Learn nHibernet", PostedOn = DateTime.Now });
+            //    _articleService.Create(new Article { Title = "Learn ASP.NET MVC", PostedOn = DateTime.Now });
 
-            _categoryService.Create(new Category {  Name = "MVC"});
-            _categoryService.Create(new Category { Name = "nHibernet"});
-            _categoryService.Create(new Category { Name = "ASP.NET MVC" });
+            //_categoryService.Create(new Category {  Name = "MVC"});
+            //_categoryService.Create(new Category { Name = "nHibernet"});
+            //_categoryService.Create(new Category { Name = "ASP.NET MVC" });
             //}
 
             var model = new ArticleModel();
