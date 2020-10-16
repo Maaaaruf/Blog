@@ -15,6 +15,14 @@ namespace Blog.Framework.Modules
 {
     public class FrameworkModule : Module
     {
+        //protected override void Load(ContainerBuilder builder)
+        //{
+        //    builder.RegisterType<FrameworkSession>()
+        //        .InstancePerLifetimeScope();
+        //}
+
+
+
         private string _connectionStringName;
 
         public FrameworkModule(string connectionStringName)
@@ -25,11 +33,13 @@ namespace Blog.Framework.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
+
+
             //builder.RegisterType<SessionStructure<Article, ArticleOverride>>()
             //    .WithParameter("connectionStringName", _connectionStringName)
             //    .InstancePerLifetimeScope();
 
-            builder.RegisterType<FrameworkSession>().As<IDataSession>()
+            builder.RegisterType<FrameworkSession>().As<InHibernetFrameworkSession>()
                 .WithParameter("connectionStringName", _connectionStringName)
                 .InstancePerLifetimeScope();
 

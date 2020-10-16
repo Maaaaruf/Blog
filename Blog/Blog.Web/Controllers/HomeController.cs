@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Autofac;
 using Blog.Framework.Repositories;
+using Blog.Data;
 
 namespace Blog.Web.Controllers
 {
@@ -19,9 +20,15 @@ namespace Blog.Web.Controllers
             articleRepository = article;
         }
 
+        //private IDataSession articleRepository;
+        //public HomeController(IDataSession article)
+        //{
+        //    articleRepository = article;
+        //}
+
         public ActionResult Index()
         {
-            var Session = new FrameworkSession().Session;
+            var Session = articleRepository.session;
             Session.Save(new Article { Title = "TTTTest Tittle", Descreption = "Test Description", isPublished = true, EditedOn = DateTime.MinValue, PostedOn = DateTime.Now });
             ITransaction _transaction;
             _transaction = Session.BeginTransaction();

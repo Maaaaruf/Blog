@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public abstract class Repository<TEntity, TKey, TSession>
-        : IRepository<TEntity, TKey, TSession>
-        where TEntity : class, IEntity<TKey>
-        where TSession : IDataSession
+    public abstract class Repository<TEntity, TSession>
+        : IRepository<TEntity, TSession>
+        where TEntity : class
+        where TSession : InHibernetFrameworkSession
     {
         public ISession session { get; set; }
 
@@ -44,7 +44,7 @@ namespace Blog.Data
             throw new NotImplementedException();
         }
 
-        public TEntity GetById(TKey id)
+        public TEntity GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -54,7 +54,7 @@ namespace Blog.Data
             throw new NotImplementedException();
         }
 
-        public void Remove(TKey id)
+        public void Remove(int id)
         {
             throw new NotImplementedException();
         }

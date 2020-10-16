@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public interface IDataSession
+    public interface InHibernetFrameworkSession
     {
         public ISession Session { get; set; }
     }

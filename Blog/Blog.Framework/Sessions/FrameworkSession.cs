@@ -16,24 +16,33 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Sessions
 {
-    public class FrameworkSession : IDataSession
+    public class FrameworkSession : InHibernetFrameworkSession
     {
-        public FrameworkSession()
-        {
-            Session = _sessionFactory.OpenSession();
-        }
-
-        private static readonly ISessionFactory _sessionFactory;
+        private string _connectionStringName;
+        private ISessionFactory _sessionFactory;
         public ISession Session { get; set; }
 
-        static FrameworkSession()
+        public FrameworkSession(string connectionStringName)
         {
+            _connectionStringName = connectionStringName;
+            Session = CreateSessionFactory(_connectionStringName).OpenSession();
+        }
+
+        private ISessionFactory CreateSessionFactory(string connectionStringName)
+        {
+            if (_sessionFactory != null)
+            {
+                return _sessionFactory;
+            }
+
             _sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
                 .Mappings(x => x.AutoMappings.Add(
                     AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
                 .BuildSessionFactory();
+            return _sessionFactory;
+
         }
     }
 }

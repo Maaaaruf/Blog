@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Entities
 {
-    public class Article : IEntity<int>
+    public class Article : IEntity
     {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }

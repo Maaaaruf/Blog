@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Repositories
 {
-    public interface IArticleRepository : IRepository<Article,int,IDataSession>
+    public interface IArticleRepository : IRepository<Article,InHibernetFrameworkSession>
     {
     }
 }

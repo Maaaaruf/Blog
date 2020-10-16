@@ -12,7 +12,7 @@ namespace Blog.Framework.Sessions.Configurations
     {
         public override bool ShouldMap(Type type)
         {
-            return type.GetInterface(typeof(IEntity<int>).FullName) != null;
+            return type.GetInterface(typeof(IEntity).FullName) != null;
         }
     }
 }

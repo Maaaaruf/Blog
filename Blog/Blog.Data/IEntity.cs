@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public interface IEntity<T>
+    public interface IEntity
     {
-        public T Id { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Repositories
 {
-    public class ArticleRepository : Repository<Article, int, IDataSession>, IArticleRepository
+    public class ArticleRepository : Repository<Article, InHibernetFrameworkSession>, IArticleRepository
     {
-        public ArticleRepository(IDataSession sessionFactory) : base(sessionFactory)
+        public ArticleRepository(InHibernetFrameworkSession sessionFactory) : base(sessionFactory)
         {
         }
     }

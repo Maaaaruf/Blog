@@ -34,7 +34,7 @@ namespace Blog.Data
             _sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
                 .Mappings(x => x.AutoMappings.Add(
-                    AutoMap.AssemblyOf<TEntity>(new AutomappingDataConfiguration()).UseOverridesFromAssemblyOf<TOverride>()))
+                    AutoMap.AssemblyOf<TEntity>(new AutomappingDataConfiguration<int>()).UseOverridesFromAssemblyOf<TOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
                 .BuildSessionFactory();
             return _sessionFactory;

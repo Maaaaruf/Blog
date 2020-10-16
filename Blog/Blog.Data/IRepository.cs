@@ -6,19 +6,19 @@ using System.Linq.Expressions;
 
 namespace Blog.Data
 {
-    public interface IRepository<TEntity, TKey, TSession> 
-        where TEntity : class, IEntity<TKey>
+    public interface IRepository<TEntity,  TSession> 
+        where TEntity : class
     {
         public ISession session { get; set; }
         public void Add(TEntity entity);
-        void Remove(TKey id);
+        void Remove(int id);
         void Remove(TEntity entityToDelete);
         void Remove(Expression<Func<TEntity, bool>> filter);
         void Edit(TEntity entityToUpdate);
         int GetCount(Expression<Func<TEntity, bool>> filter = null);
         IList<TEntity> Get(Expression<Func<TEntity, bool>> filter);
         IList<TEntity> GetAll();
-        TEntity GetById(TKey id);
+        TEntity GetById(int id);
 
         /*
         (IList<TEntity> data, int total, int totalDisplay) Get(

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public class AutomappingDataConfiguration : DefaultAutomappingConfiguration
+    public class AutomappingDataConfiguration<T> : DefaultAutomappingConfiguration
     {
         public override bool ShouldMap(Type type)
         {
-            return type.GetInterface(typeof(IEntity<int>).FullName) != null;
+            return type.GetInterface(typeof(IEntity).FullName) != null;
         }
     }
 }
