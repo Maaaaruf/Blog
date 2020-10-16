@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Blog.Data
+namespace Blog.Data.BaseRepository
 {
     public interface IRepository<TEntity,  TSession> 
         where TEntity : class

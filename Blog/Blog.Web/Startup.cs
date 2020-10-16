@@ -1,5 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Blog.Framework.Modules;
+using Microsoft.Owin;
 using Owin;
+using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(Blog.Web.Startup))]
 namespace Blog.Web
@@ -9,6 +13,8 @@ namespace Blog.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
+            
         }
     }
 }

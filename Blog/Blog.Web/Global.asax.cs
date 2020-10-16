@@ -21,18 +21,22 @@ namespace Blog.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var builder = new ContainerBuilder();
-            var connectionStringName = "DefaultConnection";
+            //var builder = new ContainerBuilder();
+            //var connectionStringName = "DefaultConnection";
 
-            //Registering Controller Dependency
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterFilterProvider();
-            builder.RegisterSource(new ViewRegistrationSource());
-            builder.RegisterModule(new FrameworkModule(connectionStringName));
+            ////Registering Dependency
+            //builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            //builder.RegisterFilterProvider();
+            //builder.RegisterSource(new ViewRegistrationSource());
+            
+            ////Module for Framework
+            //builder.RegisterModule(new FrameworkModule(connectionStringName));
+            ////Module for Web
+            //builder.RegisterModule(new FrameworkModule(connectionStringName));
 
-            var container = builder.Build();
+            //var container = builder.Build();
 
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
     }

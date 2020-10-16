@@ -1,9 +1,13 @@
 ﻿using Autofac;
 using Blog.Data;
+using Blog.Data.nHibernetConfigurations;
 using Blog.Framework.Entities;
 using Blog.Framework.Entities.Overrides;
 using Blog.Framework.Repositories;
+using Blog.Framework.Repositories.Articles;
+using Blog.Framework.Services.Articles;
 using Blog.Framework.Sessions;
+using Blog.Framework.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +43,23 @@ namespace Blog.Framework.Modules
             //    .WithParameter("connectionStringName", _connectionStringName)
             //    .InstancePerLifetimeScope();
 
+            //summary
+            //Binding for nHibernate data class "FrameworkSession"
+            //summary
             builder.RegisterType<FrameworkSession>().As<InHibernetFrameworkSession>()
                 .WithParameter("connectionStringName", _connectionStringName)
                 .InstancePerLifetimeScope();
 
+            //summary
+            //Bindings for Article
+            //summary
+            builder.RegisterType<ArticleUnitOfWork>().As<IArticleUnitOfWork>()
+                .InstancePerLifetimeScope();
             builder.RegisterType<ArticleRepository>().As<IArticleRepository>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<ArticleService>().As<IArticleService>()
+                .InstancePerLifetimeScope();
+
         }
     }
 }

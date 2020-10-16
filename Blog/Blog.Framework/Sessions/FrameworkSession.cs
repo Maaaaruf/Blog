@@ -1,4 +1,5 @@
 ﻿using Blog.Data;
+using Blog.Data.nHibernetConfigurations;
 using Blog.Framework.Entities;
 using Blog.Framework.Entities.Overrides;
 using Blog.Framework.Sessions.Configurations;

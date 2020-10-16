@@ -95,17 +95,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutomappingDataConfiguration.cs" />
+    <Compile Include="BaseUnitOfWork\UnitOfWork.cs" />
+    <Compile Include="nHibernetConfigurations\AutomappingDataConfiguration.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="InHibernetFrameworkSession.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="nHibernetConfigurations\InHibernetFrameworkSession.cs" />
+    <Compile Include="BaseRepository\IRepository.cs" />
+    <Compile Include="BaseUnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="SessionStructure.cs" />
+    <Compile Include="BaseRepository\Repository.cs" />
+    <Compile Include="nHibernetConfigurations\SessionStructure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

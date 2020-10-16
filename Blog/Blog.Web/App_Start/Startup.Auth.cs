@@ -6,11 +6,18 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Blog.Web.Models;
+using Blog.Framework.Services.Articles;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Blog.Framework.Modules;
+using System.Web.Mvc;
 
 namespace Blog.Web
 {
     public partial class Startup
     {
+        public static ILifetimeScope AutofacContainer { get; private set; }
+
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -63,6 +70,25 @@ namespace Blog.Web
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+
+            var builder = new ContainerBuilder();
+            var connectionStringName = "DefaultConnection";
+
+            //Registering Dependency
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterFilterProvider();
+            builder.RegisterSource(new ViewRegistrationSource());
+
+            //Module for Framework
+            builder.RegisterModule(new FrameworkModule(connectionStringName));
+            //Module for Web
+            builder.RegisterModule(new WebModule());
+
+            var container = builder.Build();
+            AutofacContainer = container;
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

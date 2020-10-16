@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Data
+namespace Blog.Data.nHibernetConfigurations
 {
     public class SessionStructure<TEntity, TOverride>
     {
