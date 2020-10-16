@@ -4,6 +4,7 @@ using Blog.Framework.Sessions.Configurations;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Data;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using System;
@@ -14,27 +15,33 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Sessions
 {
-    public class FrameworkSession
+    public class FrameworkSession<TEntity, TOverride>
     {
-        public FrameworkSession()
+        private string _connectionStringName;
+        public FrameworkSession(string connectionStringName)
         {
-            Session = _sessionFactory.OpenSession();
+            _connectionStringName = connectionStringName;
+            Session = CreateSessionFactory(_connectionStringName).OpenSession();
         }
 
-        private static readonly ISessionFactory _sessionFactory;
+        private ISessionFactory _sessionFactory;
         public ISession Session { get; set; }
 
-        static FrameworkSession()
+        private ISessionFactory CreateSessionFactory(string connectionStringName)
         {
-            if (_sessionFactory == null)
+            if (_sessionFactory != null)
             {
-                _sessionFactory = Fluently.Configure()
-                    .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
-                    .Mappings(x => x.AutoMappings.Add(
-                        AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
-                    .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
-                    .BuildSessionFactory();
+                return _sessionFactory;
             }
+
+            _sessionFactory = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
+                .Mappings(x => x.AutoMappings.Add(
+                    AutoMap.AssemblyOf<Entity>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<TOverride>()))
+                .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
+                .BuildSessionFactory();
+            return _sessionFactory;
+            
         }
     }
 }
