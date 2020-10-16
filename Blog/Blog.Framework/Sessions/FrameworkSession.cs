@@ -26,12 +26,15 @@ namespace Blog.Framework.Sessions
 
         static FrameworkSession()
         {
-            _sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
-                .Mappings(x => x.AutoMappings.Add(
-                    AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
-                .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
-                .BuildSessionFactory();
+            if (_sessionFactory == null)
+            {
+                _sessionFactory = Fluently.Configure()
+                    .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
+                    .Mappings(x => x.AutoMappings.Add(
+                        AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
+                    .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
+                    .BuildSessionFactory();
+            }
         }
     }
 }
