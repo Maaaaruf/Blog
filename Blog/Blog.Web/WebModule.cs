@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Blog.Web.Areas.User.Models.Articles;
 using Blog.Web.Models;
 using System;
 using System.Collections.Generic;

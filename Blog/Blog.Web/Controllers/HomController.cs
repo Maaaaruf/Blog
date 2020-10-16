@@ -12,6 +12,7 @@ using Blog.Framework.Repositories.Articles;
 using Blog.Framework.UnitOfWorks;
 using Blog.Framework.Services.Articles;
 using Blog.Web.Models;
+using Blog.Web.Areas.User.Models.Articles;
 
 namespace Blog.Web.Controllers
 {
@@ -24,7 +25,7 @@ namespace Blog.Web.Controllers
         //}
 
         //private IArticleUnitOfWork _articleUnitOfWork;
-        //public HomeController(IArticleUnitOfWork articleUnitOfWork)
+        //public HomController(IArticleUnitOfWork articleUnitOfWork)
         //{
         //    _articleUnitOfWork = articleUnitOfWork;
         //}
@@ -44,9 +45,9 @@ namespace Blog.Web.Controllers
         public ActionResult Index()
         {
 
-            var model = new ArticleModel();
+            //var model = new ArticleModel();
 
-            var data = model.GetAllArticle();
+            //var data = model.GetAllArticle();
             //_articleUnitOfWork.ArticleRepository.Add(new Article { Title = "TTTTest Tittle", Descreption = "Test Description", isPublished = true, EditedOn = DateTime.MinValue, PostedOn = DateTime.Now });
             //_articleUnitOfWork.BeginTransaction();
             //_articleUnitOfWork.Commit();
@@ -99,7 +100,9 @@ namespace Blog.Web.Controllers
 
 
 
-            return View();
+
+            return Redirect("~/User/Article/Index");
+
         }
 
         public ActionResult About()

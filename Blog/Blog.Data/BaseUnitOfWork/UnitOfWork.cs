@@ -38,7 +38,11 @@ namespace Blog.Data.BaseUnitOfWork
 
                 throw;
             }
-            finally
+        }
+
+        public void Dispose()
+        {
+            if (_session != null)
             {
                 _session.Dispose();
             }
@@ -53,7 +57,7 @@ namespace Blog.Data.BaseUnitOfWork
             }
             finally
             {
-                _session.Dispose();
+                //_session.Dispose();
             }
         }
     }

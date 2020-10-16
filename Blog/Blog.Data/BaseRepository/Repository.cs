@@ -32,7 +32,7 @@ namespace Blog.Data.BaseRepository
 
         public virtual void Edit(TEntity entityToUpdate)
         {
-            _session.UpdateAsync(entityToUpdate);
+            _session.Update(entityToUpdate);
         }
 
         public virtual IList<TEntity> Get(Expression<Func<TEntity, bool>> filter)
@@ -47,7 +47,7 @@ namespace Blog.Data.BaseRepository
 
         public virtual TEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            return _session.Get<TEntity>(id);
         }
 
         public virtual int GetCount(Expression<Func<TEntity, bool>> filter = null)
@@ -57,7 +57,7 @@ namespace Blog.Data.BaseRepository
 
         public virtual void Remove(int id)
         {
-            throw new NotImplementedException();
+            _session.Delete(_session.Load<TEntity>(id));
         }
 
         public virtual void Remove(TEntity entityToDelete)

@@ -9,7 +9,7 @@ namespace Blog.Web.Areas.User.Models.Articles
 {
     public class ArticleBaseModel : UserBaseModel
     {
-        private IArticleService _articleService;
+        protected readonly IArticleService _articleService;
         public ArticleBaseModel(IArticleService articleService)
         {
             _articleService = articleService;

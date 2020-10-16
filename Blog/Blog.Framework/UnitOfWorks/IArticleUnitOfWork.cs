@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.UnitOfWorks
 {
-    public interface IArticleUnitOfWork : IUnitOfWork
+    public interface IArticleUnitOfWork : IUnitOfWork, IDisposable
     {
         public IArticleRepository ArticleRepository { get; set; }
     }

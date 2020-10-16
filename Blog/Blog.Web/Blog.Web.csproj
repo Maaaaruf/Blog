@@ -87,6 +87,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -221,9 +222,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\User\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminBaseModel.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\CategoryBaseModel.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\CategoryModel.cs" />
+    <Compile Include="Areas\User\Controllers\ArticleController.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleBaseModel.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleModel.cs" />
+    <Compile Include="Areas\User\Models\Articles\CreateArticleModel.cs" />
+    <Compile Include="Areas\User\Models\Articles\EditArticleModel.cs" />
+    <Compile Include="Areas\User\Models\MenuModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Areas\User\Models\UserBaseModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -233,7 +241,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -241,6 +248,21 @@
     <Compile Include="WebModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\blog\css\blog-home.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\blog\vendor\jquery\jquery.js" />
+    <Content Include="Content\blog\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\blog\vendor\jquery\jquery.slim.js" />
+    <Content Include="Content\blog\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -253,6 +275,24 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\User\Views\Home\Index.cshtml" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\blog\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\blog\vendor\jquery\jquery.min.map" />
+    <Content Include="Content\blog\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Areas\User\Views\Article\Create.cshtml" />
+    <Content Include="Areas\User\Views\Article\Index.cshtml" />
+    <Content Include="Areas\User\Views\Article\Edit.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -305,12 +345,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\NewFolder1\" />
+    <Folder Include="Areas\Admin\Views\Category\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\User\Data\" />
-    <Folder Include="Areas\User\Views\Home\" />
-    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Content\blogpostimages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
