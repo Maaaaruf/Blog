@@ -1,3 +1,7 @@
+using Autofac;
+using Autofac.Integration.Mvc;
+using Blog.Framework.Modules;
+using Blog.Framework.Sessions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +20,19 @@ namespace Blog.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var builder = new ContainerBuilder();
+
+            //Registering Controller Dependency
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterFilterProvider();
+            builder.RegisterSource(new ViewRegistrationSource());
+            builder.RegisterModule(new FrameworkModule());
+
+            var container = builder.Build();
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
+
     }
 }
