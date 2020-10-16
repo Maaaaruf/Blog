@@ -1,4 +1,5 @@
-﻿using Blog.Framework.Entities;
+﻿using Blog.Data;
+using Blog.Framework.Entities;
 using Blog.Framework.Entities.Overrides;
 using Blog.Framework.Sessions.Configurations;
 using FluentNHibernate.Automapping;
@@ -15,17 +16,17 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Sessions
 {
-    public class FrameworkSession<TEntity, TOverride>
+    public class FrameworkSession : IDataSession
     {
         private string _connectionStringName;
+        private ISessionFactory _sessionFactory;
+        public ISession Session { get; set; }
+
         public FrameworkSession(string connectionStringName)
         {
             _connectionStringName = connectionStringName;
             Session = CreateSessionFactory(_connectionStringName).OpenSession();
         }
-
-        private ISessionFactory _sessionFactory;
-        public ISession Session { get; set; }
 
         private ISessionFactory CreateSessionFactory(string connectionStringName)
         {
@@ -37,11 +38,11 @@ namespace Blog.Framework.Sessions
             _sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
                 .Mappings(x => x.AutoMappings.Add(
-                    AutoMap.AssemblyOf<Entity>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<TOverride>()))
+                    AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
                 .BuildSessionFactory();
             return _sessionFactory;
-            
+
         }
     }
 }
