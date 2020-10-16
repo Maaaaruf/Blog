@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Framework.Sessions.Configurations
+namespace Blog.Data
 {
-    public class AutomappingConfiguration : DefaultAutomappingConfiguration
+    public class AutomappingDataConfiguration : DefaultAutomappingConfiguration
     {
         public override bool ShouldMap(Type type)
         {

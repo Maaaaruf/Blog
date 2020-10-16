@@ -310,6 +310,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Blog.Data\Blog.Data.csproj">
+      <Project>{53faeb3b-a82a-4186-8ce7-09e125da245c}</Project>
+      <Name>Blog.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Blog.Framework\Blog.Framework.csproj">
       <Project>{cc911f11-4a98-4c44-b143-8445e592d431}</Project>
       <Name>Blog.Framework</Name>

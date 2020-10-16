@@ -22,12 +22,13 @@ namespace Blog.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var builder = new ContainerBuilder();
+            var connectionStringName = "DefaultConnection";
 
             //Registering Controller Dependency
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterFilterProvider();
             builder.RegisterSource(new ViewRegistrationSource());
-            builder.RegisterModule(new FrameworkModule());
+            builder.RegisterModule(new FrameworkModule(connectionStringName));
 
             var container = builder.Build();
 

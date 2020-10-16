@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Framework
+namespace Blog.Framework.Entities
 {
-    public class Class1
+    class Category
     {
     }
 }

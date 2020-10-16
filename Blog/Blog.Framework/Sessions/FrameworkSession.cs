@@ -18,31 +18,22 @@ namespace Blog.Framework.Sessions
 {
     public class FrameworkSession : IDataSession
     {
-        private string _connectionStringName;
-        private ISessionFactory _sessionFactory;
-        public ISession Session { get; set; }
-
-        public FrameworkSession(string connectionStringName)
+        public FrameworkSession()
         {
-            _connectionStringName = connectionStringName;
-            Session = CreateSessionFactory(_connectionStringName).OpenSession();
+            Session = _sessionFactory.OpenSession();
         }
 
-        private ISessionFactory CreateSessionFactory(string connectionStringName)
-        {
-            if (_sessionFactory != null)
-            {
-                return _sessionFactory;
-            }
+        private static readonly ISessionFactory _sessionFactory;
+        public ISession Session { get; set; }
 
+        static FrameworkSession()
+        {
             _sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey("DefaultConnection")))
                 .Mappings(x => x.AutoMappings.Add(
                     AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
                 .BuildSessionFactory();
-            return _sessionFactory;
-
         }
     }
 }

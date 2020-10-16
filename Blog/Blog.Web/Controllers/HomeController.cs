@@ -6,15 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Autofac;
+using Blog.Framework.Repositories;
 
 namespace Blog.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IArticleRepository articleRepository;
+        public HomeController(IArticleRepository article)
+        {
+            articleRepository = article;
+        }
+
         public ActionResult Index()
         {
             var Session = new FrameworkSession().Session;
-            Session.Save(new Article { Title = "Test Tittle", Descreption = "Test Description", isPublished = true, EditedOn = DateTime.MinValue, PostedOn = DateTime.Now});
+            Session.Save(new Article { Title = "TTTTest Tittle", Descreption = "Test Description", isPublished = true, EditedOn = DateTime.MinValue, PostedOn = DateTime.Now });
             ITransaction _transaction;
             _transaction = Session.BeginTransaction();
             try
@@ -33,6 +41,31 @@ namespace Blog.Web.Controllers
             {
                 Session.Dispose();
             }
+
+
+
+
+
+            //articleRepository.Add(new Article { Title = "TTTTTest Tittle", Descreption = "Test Description", isPublished = true, EditedOn = DateTime.MinValue, PostedOn = DateTime.Now});
+            //ITransaction _transaction;
+            //ISession Session = articleRepository.session;
+            //_transaction = Session.BeginTransaction();
+            //try
+            //{
+            //    if (_transaction != null && _transaction.IsActive)
+            //        _transaction.Commit();
+            //}
+            //catch
+            //{
+            //    if (_transaction != null && _transaction.IsActive)
+            //        _transaction.Rollback();
+
+            //    throw;
+            //}
+            //finally
+            //{
+            //    Session.Dispose();
+            //}
 
 
 
