@@ -1,0 +1,27 @@
+﻿@model Blog.Web.Areas.Admin.Models.Categories.CategoryModel
+
+
+<h2>Category List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model.Categories) {
+    <tr>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -42,7 +42,7 @@ namespace Blog.Data.BaseRepository
 
         public virtual IList<TEntity> GetAll()
         {
-            return _session.CreateCriteria<TEntity>().List<TEntity>();
+            return _session.Query<TEntity>().ToList();
         }
 
         public virtual TEntity GetById(int id)

@@ -10,6 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+The class isn't used anywhere of the code.
+Kept it as reference for future improvement
+*/
+
+
 namespace Blog.Data.nHibernetConfigurations
 {
     public class SessionStructure<TEntity, TOverride>

@@ -5,9 +5,12 @@ using Blog.Framework.Entities;
 using Blog.Framework.Entities.Overrides;
 using Blog.Framework.Repositories;
 using Blog.Framework.Repositories.Articles;
+using Blog.Framework.Repositories.Categories;
 using Blog.Framework.Services.Articles;
+using Blog.Framework.Services.Categories;
 using Blog.Framework.Sessions;
 using Blog.Framework.UnitOfWorks;
+using Blog.Framework.UnitOfWorks.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +61,14 @@ namespace Blog.Framework.Modules
             builder.RegisterType<ArticleRepository>().As<IArticleRepository>()
                 .InstancePerLifetimeScope();
             builder.RegisterType<ArticleService>().As<IArticleService>()
+                .InstancePerLifetimeScope();
+
+            //summary
+            //Bindings for Category
+            //summary
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<CategoryService>().As<ICategoryService>()
                 .InstancePerLifetimeScope();
 
         }

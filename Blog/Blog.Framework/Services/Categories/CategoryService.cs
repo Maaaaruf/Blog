@@ -1,47 +1,47 @@
 ﻿using Blog.Framework.Entities;
-using Blog.Framework.UnitOfWorks;
 using Blog.Framework.UnitOfWorks.Articles;
+using Blog.Framework.UnitOfWorks.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Framework.Services.Articles
+namespace Blog.Framework.Services.Categories
 {
-    public class ArticleService : IArticleService
+    public class CategoryService : ICategoryService
     {
         public IArticleUnitOfWork _articleUnitOfWork { get; set; }
 
-        public ArticleService(IArticleUnitOfWork articleUnitOfWork)
+        public CategoryService(IArticleUnitOfWork articleUnitOfWork)
         {
             _articleUnitOfWork = articleUnitOfWork;
         }
 
 
         //summary
-        // Get a list of all article from DB
+        // Get a list of all category from DB
         //summary
-        public IList<Article> GetAll()
+        public IList<Category> GetAll()
         {
-            var articles = _articleUnitOfWork.ArticleRepository.GetAll();
-            return articles;
+            var categories = _articleUnitOfWork.CategoryRepository.GetAll();
+            return categories;
         }
 
 
         //summary
-        // Create a Article
+        // Create a Category
         //summary
-        public void Create(Article article)
+        public void Create(Category category)
         {
-            _articleUnitOfWork.ArticleRepository.Add(article);
+            _articleUnitOfWork.CategoryRepository.Add(category);
             _articleUnitOfWork.BeginTransaction();
             _articleUnitOfWork.Commit();
         }
 
-        public void Update(Article article)
+        public void Update(Category category)
         {
-            _articleUnitOfWork.ArticleRepository.Edit(article);
+            _articleUnitOfWork.CategoryRepository.Edit(category);
             _articleUnitOfWork.BeginTransaction();
             _articleUnitOfWork.Commit();
         }
@@ -51,14 +51,14 @@ namespace Blog.Framework.Services.Articles
             throw new NotImplementedException();
         }
 
-        public void Remove(Article article)
+        public void Remove(Category category)
         {
             throw new NotImplementedException();
         }
 
         public void Remove(int id)
         {
-            _articleUnitOfWork.ArticleRepository.Remove(id);
+            _articleUnitOfWork.CategoryRepository.Remove(id);
             _articleUnitOfWork.BeginTransaction();
             _articleUnitOfWork.Commit();
         }
@@ -68,10 +68,10 @@ namespace Blog.Framework.Services.Articles
             throw new NotImplementedException();
         }
 
-        public Article GetById(int id)
+        public Category GetById(int id)
         {
-            Article article = _articleUnitOfWork.ArticleRepository.GetById(id);
-            return article;
+            Category category = _articleUnitOfWork.CategoryRepository.GetById(id);
+            return category;
         }
     }
 }

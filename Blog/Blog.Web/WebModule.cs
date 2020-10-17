@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Blog.Web.Areas.Admin.Models.Categories;
 using Blog.Web.Areas.User.Models.Articles;
 using Blog.Web.Models;
 using System;
@@ -13,6 +14,9 @@ namespace Blog.Web
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ArticleModel>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<CategoryModel>()
                 .InstancePerLifetimeScope();
         }
 

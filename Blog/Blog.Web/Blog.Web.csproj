@@ -226,6 +226,8 @@
     <Compile Include="Areas\Admin\Models\AdminBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\CategoryBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\CategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\CreateCategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\EditCategoryModel.cs" />
     <Compile Include="Areas\User\Controllers\ArticleController.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleBaseModel.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleModel.cs" />
@@ -293,6 +295,11 @@
     <Content Include="Areas\User\Views\Article\Create.cshtml" />
     <Content Include="Areas\User\Views\Article\Index.cshtml" />
     <Content Include="Areas\User\Views\Article\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -346,9 +353,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\NewFolder1\" />
-    <Folder Include="Areas\Admin\Views\Category\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Content\blogpostimages\" />
   </ItemGroup>

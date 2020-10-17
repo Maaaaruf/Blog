@@ -130,13 +130,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Articles\ArticleRepository.cs" />
     <Compile Include="Repositories\Articles\IArticleRepository.cs" />
+    <Compile Include="Repositories\Categories\CategoryRepository.cs" />
+    <Compile Include="Repositories\Categories\ICategoryRepository.cs" />
     <Compile Include="Services\Articles\ArticleService.cs" />
     <Compile Include="Services\Articles\IArticleService.cs" />
+    <Compile Include="Services\Categories\CategoryService.cs" />
+    <Compile Include="Services\Categories\ICategoryService.cs" />
     <Compile Include="Sessions\Configurations\AutomappingConfiguration.cs" />
     <Compile Include="Sessions\FrameworkSession.cs" />
     <Compile Include="Sessions\IFrameworkSession.cs" />
-    <Compile Include="UnitOfWorks\ArticleUnitOfWork.cs" />
-    <Compile Include="UnitOfWorks\IArticleUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\Articles\ArticleUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\Articles\IArticleUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\Category\CategoryUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\Category\ICategoryUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
