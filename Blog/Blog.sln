@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Framework", "Blog.Fram
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Web", "Blog.Web\Blog.Web.csproj", "{A8C92C82-CDD8-4E7D-A17B-52CB36A22DA4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B30F491B-BA85-4F04-96FF-724BC8B0B649}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Framework.Tests", "Blog.Framework.Tests\Blog.Framework.Tests.csproj", "{5EE87728-C85B-4FBF-98CB-9B618825B9C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{A8C92C82-CDD8-4E7D-A17B-52CB36A22DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C92C82-CDD8-4E7D-A17B-52CB36A22DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C92C82-CDD8-4E7D-A17B-52CB36A22DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE87728-C85B-4FBF-98CB-9B618825B9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE87728-C85B-4FBF-98CB-9B618825B9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE87728-C85B-4FBF-98CB-9B618825B9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE87728-C85B-4FBF-98CB-9B618825B9C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5EE87728-C85B-4FBF-98CB-9B618825B9C6} = {B30F491B-BA85-4F04-96FF-724BC8B0B649}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46E57F90-BCBF-4D61-8D59-A3F19F3B5802}
