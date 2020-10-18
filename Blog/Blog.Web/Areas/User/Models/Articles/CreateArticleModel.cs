@@ -1,4 +1,6 @@
-﻿using Blog.Framework.Entities;
+﻿using Autofac;
+using Blog.Framework.Entities;
+using Blog.Framework.Services.Categories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +13,11 @@ namespace Blog.Web.Areas.User.Models.Articles
 {
     public class CreateArticleModel : ArticleBaseModel
     {
+        public CreateArticleModel()
+        {
+            Categories = _categoryService.GetAll();
+        }
+
         [Required(ErrorMessage = "Title is IMPORTANT")]
         public virtual string Title { get; set; }
         [DataType(DataType.MultilineText)]
@@ -20,9 +27,12 @@ namespace Blog.Web.Areas.User.Models.Articles
         [DisplayName("Publish Instantly?")]
         public virtual bool isPublished { get; set; }
         [DisplayName("Catagory")]
+        [Required(ErrorMessage = "Catagory is IMPORTANT")]
         public virtual int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+
         public IEnumerable<Category> Categories { get; set; }
+        public ICategoryService _categoryService = Startup.AutofacContainer.Resolve<ICategoryService>();
 
         public void CreateArticle()
         {

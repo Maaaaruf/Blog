@@ -10,20 +10,31 @@ using System.Web.UI.WebControls;
 
 namespace Blog.Web.Areas.User.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
 
+        [AllowAnonymous]
         // GET: User/Home
         public ActionResult Index()
         {
             var model = new ArticleModel();
-            model.Articles = model.GetArticles();
+            model.GetArticles();
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult IndexByCategory(int id)
+        {
+            var model = new ArticleModel();
+            model.GetArticlesByCategory(id);
             return View(model);
         }
 
         public ActionResult Create()
         {
-            return View();
+            var model = new CreateArticleModel();
+            return View(model);
         }
 
         [HttpPost]

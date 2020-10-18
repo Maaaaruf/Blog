@@ -4,6 +4,7 @@ using Blog.Framework.UnitOfWorks.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,10 +25,15 @@ namespace Blog.Framework.Services.Articles
         //summary
         public IList<Article> GetAll()
         {
-            var articles = _articleUnitOfWork.ArticleRepository.GetAll();
+            var articles = _articleUnitOfWork.ArticleRepository.GetAll().OrderByDescending(x => x.PostedOn).ToList() ;
             return articles;
         }
 
+        public IList<Article> GetByCategoryId(int categoryId)
+        {
+            IList<Article> articles = _articleUnitOfWork.ArticleRepository.Get(x => x.CategoryId == categoryId).OrderByDescending(x => x.PostedOn).ToList();
+            return articles;
+        }
 
         //summary
         // Create a Article
@@ -73,5 +79,7 @@ namespace Blog.Framework.Services.Articles
             Article article = _articleUnitOfWork.ArticleRepository.GetById(id);
             return article;
         }
+
+        
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Antlr.Runtime.Tree;
+using Autofac;
 using Blog.Framework.Entities;
+using Blog.Framework.Services.Categories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,32 +14,40 @@ namespace Blog.Web.Areas.User.Models.Articles
 {
     public class EditArticleModel : ArticleBaseModel
     {
+        public EditArticleModel()
+        {
+            Categories = _categoryService.GetAll();
+        }
+
         public int Id { get; set; }
         [Required(ErrorMessage = "Title is IMPORTANT")]
         public virtual string Title { get; set; }
         [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "Description is IMPORTANT")]
         public virtual string Descreption { get; set; }
         public virtual string ImageURL { get; set; }
         [DisplayName("Publish Instantly?")]
         public virtual bool isPublished { get; set; }
-        [Required(ErrorMessage = "Description is IMPORTANT")]
         [DisplayName("Catagory")]
+        [Required(ErrorMessage = "Catagory is IMPORTANT")]
         public virtual int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+
         public IEnumerable<Category> Categories { get; set; }
+        public ICategoryService _categoryService = Startup.AutofacContainer.Resolve<ICategoryService>();
 
 
         public void Edit()
         {
             var article = _articleService.GetById(this.Id);
             article.Id = this.Id;
-            article.Category = this.Category;
             article.CategoryId = this.CategoryId;
             article.Descreption = this.Descreption;
             article.ImageURL = this.ImageURL;
             article.isPublished = this.isPublished;
             article.Title = this.Title;
             article.EditedOn = DateTime.UtcNow.AddHours(6);
+            
 
             _articleService.Update(article);
         }

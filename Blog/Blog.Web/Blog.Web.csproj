@@ -223,11 +223,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MembershipController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\CategoryBaseModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\CategoryModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\CreateCategoryModel.cs" />
     <Compile Include="Areas\Admin\Models\Categories\EditCategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\Membership\MembershipModel.cs" />
     <Compile Include="Areas\User\Controllers\ArticleController.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleBaseModel.cs" />
     <Compile Include="Areas\User\Models\Articles\ArticleModel.cs" />
@@ -237,11 +239,12 @@
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Areas\User\Models\UserBaseModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -295,11 +298,18 @@
     <Content Include="Areas\User\Views\Article\Create.cshtml" />
     <Content Include="Areas\User\Views\Article\Index.cshtml" />
     <Content Include="Areas\User\Views\Article\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\User\Views\Article\IndexByCategory.cshtml" />
+    <Content Include="Areas\User\Views\Shared\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Membership\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Membership\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\View.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>

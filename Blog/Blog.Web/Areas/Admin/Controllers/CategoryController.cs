@@ -7,8 +7,10 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
+
         // GET: Admin/Category
         public ActionResult Index()
         {

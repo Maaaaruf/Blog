@@ -16,5 +16,6 @@ namespace Blog.Framework.Services.Articles
         public void Remove(Article article);
         public void Remove(int id);
         Article GetById(int id);
+        IList<Article> GetByCategoryId(int categoryId);
     }
 }

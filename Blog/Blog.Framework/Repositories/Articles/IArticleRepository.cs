@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace Blog.Framework.Repositories.Articles
 {
-    public interface IArticleRepository : IRepository<Article,InHibernetFrameworkSession>
+    public interface IArticleRepository : IRepository<Article, InHibernetFrameworkSession>
     {
+        
     }
 }

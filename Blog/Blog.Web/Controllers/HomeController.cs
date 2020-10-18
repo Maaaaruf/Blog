@@ -16,7 +16,7 @@ using Blog.Web.Areas.User.Models.Articles;
 
 namespace Blog.Web.Controllers
 {
-    public class HomController : Controller
+    public class HomeController : Controller
     {
         //public ArticleModel _model { get; set; }
         //public HomeController(ArticleModel model)
