@@ -22,9 +22,9 @@ namespace Blog.Web.Areas.Admin.Models.Membership
 
         public void EditUser()
         {
-            using (var context = new ApplicationDbContext())
+            using (var context = ApplicationDbContext.Create())
             {
-
+                
                 ApplicationUser ExistingUser = context.Users.Where(x => x.Id == this.Id).FirstOrDefault();
 
                 if (ExistingUser != null)

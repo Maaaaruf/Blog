@@ -6,11 +6,10 @@
         @Html.AntiForgeryToken()
 
 
-        <p class="nav-item text-white" >
+        <li class="nav-item text-white">
             Hello @User.Identity.GetUserName()
-            </p>
-        
-        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        </li>
+        <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
 
     }
 }
@@ -21,21 +20,3 @@ else
     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
 
 }
-
-
-
-@*@using Microsoft.AspNet.Identity
-    @if (Request.IsAuthenticated)
-    {
-            <li class="nav-item">
-               @User.Identity.GetUserName()
-            </li>
-            <li class="nav-item"><a href="~/Account/Logoff">Log off</a></li>
-    }
-    else
-    {
-
-            <li class="nav-item"><a href="~/Account/Register">Register</a></li>
-            <li class="nav-item"><a href="~/Account/Login">Login</a></li>
-
-    }*@

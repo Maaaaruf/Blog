@@ -106,9 +106,10 @@ namespace Blog.Web.Areas.Admin.Controllers
 
 
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             var model = new MembershipModel();
+            model.Id = id;
             return View(model);
         }
 
