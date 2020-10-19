@@ -151,8 +151,10 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user2 = await UserManager.FindByIdAsync("4c5e7d7b-9cb4-4fb4-b85a-084de459ba13");
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //var use = await UserManager.FindAsync();
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login", "Account");
