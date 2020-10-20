@@ -1,6 +1,7 @@
 ﻿using Blog.Web.Areas.Admin.Models.Membership;
 using Blog.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NHibernate.Util;
@@ -55,18 +56,21 @@ namespace Blog.Web.Areas.Admin.Controllers
 
 
 
-        // GET: Admin/Membership
+        // GET: Membership/Membership
         public ActionResult Index()
         {
             var model = new MembershipModel();
-            model.GetUsers();
+            //model.GetUsers();
+            var Users = UserManager.Users.ToList();
+            model.Users = Users;
+            
             return View(model);
         }
 
 
 
-        // GET: /Account/Register
-        
+        // GET: /Membership/Register
+
         public ActionResult Register()
         {
 
@@ -74,25 +78,18 @@ namespace Blog.Web.Areas.Admin.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Membership/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    //UserManager.AddToRole(user.Id, Roles.MEMBER);
                     return RedirectToAction("Index", "Membership");
                 }
                 AddErrors(result);
@@ -106,31 +103,55 @@ namespace Blog.Web.Areas.Admin.Controllers
 
 
 
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
+            var user = await UserManager.FindByIdAsync(id);
             var model = new MembershipModel();
-            model.Id = id;
+            
+            if(user != null)
+            {
+                model.Id = user.Id;
+                model.UserName = user.UserName;
+                model.PhoneNumber = user.PhoneNumber;
+                model.Email = user.Email;
+
+
+            }
             return View(model);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MembershipModel model)
+        public async Task<ActionResult> Edit(MembershipModel model)
         {
             if (ModelState.IsValid)
             {
-                model.EditUser();
+                var user = await UserManager.FindByIdAsync(model.Id);
+
+                if (user != null)
+                {
+                    user.Id = model.Id;
+                    user.UserName = model.UserName;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.Email = model.Email;
+                    UserManager.Update(user);
+                }
+
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
-            var model = new MembershipModel();
-            model.DeleteUser(id);
+
+            ApplicationUser user = await UserManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                UserManager.Delete(user);
+            }
             return RedirectToAction("Index");
         }
 

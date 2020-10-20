@@ -17,6 +17,7 @@ namespace Blog.Web
     public partial class Startup
     {
         public static ILifetimeScope AutofacContainer { get; private set; }
+        public static string connectionStringName = "DefaultConnection";
 
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
@@ -73,7 +74,7 @@ namespace Blog.Web
 
 
             var builder = new ContainerBuilder();
-            var connectionStringName = "DefaultConnection";
+            //connectionStringName = "DefaultConnection";
 
             //Registering Dependency
             builder.RegisterControllers(typeof(MvcApplication).Assembly);

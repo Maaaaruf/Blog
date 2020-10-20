@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Blog.Framework.Modules;
 using Blog.Framework.Sessions;
+using Blog.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +21,6 @@ namespace Blog.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //var builder = new ContainerBuilder();
-            //var connectionStringName = "DefaultConnection";
-
-            ////Registering Dependency
-            //builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            //builder.RegisterFilterProvider();
-            //builder.RegisterSource(new ViewRegistrationSource());
-            
-            ////Module for Framework
-            //builder.RegisterModule(new FrameworkModule(connectionStringName));
-            ////Module for Web
-            //builder.RegisterModule(new FrameworkModule(connectionStringName));
-
-            //var container = builder.Build();
-
-            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
     }
