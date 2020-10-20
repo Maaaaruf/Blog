@@ -1,5 +1,5 @@
 Installation Instruction:
-1. Replace connection string of ~/ERP.Web/web.config with yours.
+1. Replace connection string of ~/ERP.Web/web.config with yours. (Tables will be created automatically, you need to create the db)
 2. Replace connectionStringName variable of ~/ERP.Web/App_Start/Startup.Auth.cs, Or no need to change anything if you set Connection String Name as "DefaultConnection"
 3. Run the application.
 
