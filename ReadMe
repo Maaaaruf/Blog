@@ -1,3 +1,6 @@
+This is simple blog to show you, How to access database through nHibernet with Repository and Unit Of Work Layer
+
+
 Installation Instruction:
 1. Replace connection string of ~/ERP.Web/web.config with yours. (Tables will be created automatically, you need to create the db)
 2. Replace connectionStringName variable of ~/ERP.Web/App_Start/Startup.Auth.cs with yours, Or no need to change anything if you set Connection String Name as "DefaultConnection"
