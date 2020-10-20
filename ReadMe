@@ -4,3 +4,5 @@ Installation Instruction:
 3. Run the application.
 
 N:B: If your Article title or descrepction contains more than 255 character then set those coloumns Data Type "nvarchar(MAX)" from database after first run. Then Restart the application.
+
+** If you face any problem, please ping me at marufbdonline@gmail.com
