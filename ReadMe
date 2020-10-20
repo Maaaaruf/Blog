@@ -1,1 +1,8 @@
+Installation Instruction:
+1. Replace connection string of ~/ERP.Web/web.config with yours.
+2. Replace connectionStringName variable of ~/ERP.Web/App_Start/Startup.Auth.cs, Or no need to change anything if you set Connection String Name as "DefaultConnection"
+3. Run the application.
 
+N:B: If your Article title or descrepction contains more than 255 character then set those coloumns Data Type "nvarchar(MAX)" from database after first run. Then Restart the application.
+
+** If you face any problem, please ping me at marufbdonline@gmail.com
