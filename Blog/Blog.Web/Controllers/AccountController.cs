@@ -155,7 +155,6 @@ namespace Blog.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, Roles.MEMBER);
                     return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
