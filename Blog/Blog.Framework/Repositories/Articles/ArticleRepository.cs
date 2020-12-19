@@ -13,7 +13,7 @@ namespace Blog.Framework.Repositories.Articles
 {
     public class ArticleRepository : Repository<Article, InHibernetFrameworkSession>, IArticleRepository
     {
-        public ArticleRepository(InHibernetFrameworkSession sessionFactory) : base(sessionFactory)
+        public ArticleRepository(InHibernetFrameworkSession session) : base(session)
         {
         }
     }

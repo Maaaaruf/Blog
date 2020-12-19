@@ -34,16 +34,31 @@ namespace Blog.Framework.Services.Categories
         //summary
         public void Create(Category category)
         {
-            _articleUnitOfWork.CategoryRepository.Add(category);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+            
+
+            try
+            {
+                _articleUnitOfWork.CategoryRepository.Add(category);
+                _articleUnitOfWork.Commit();
+            } catch ( Exception e)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Update(Category category)
         {
-            _articleUnitOfWork.CategoryRepository.Edit(category);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+            try
+            {
+                _articleUnitOfWork.CategoryRepository.Edit(category);
+                _articleUnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Update(int id)
@@ -58,9 +73,17 @@ namespace Blog.Framework.Services.Categories
 
         public void Remove(int id)
         {
-            _articleUnitOfWork.CategoryRepository.Remove(id);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+
+            try
+            {
+                _articleUnitOfWork.CategoryRepository.Remove(id);
+                _articleUnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Dispose()

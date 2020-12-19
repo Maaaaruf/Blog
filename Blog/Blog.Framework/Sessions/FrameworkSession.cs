@@ -20,29 +20,30 @@ namespace Blog.Framework.Sessions
     public class FrameworkSession : InHibernetFrameworkSession
     {
         private string _connectionStringName;
-        private ISessionFactory _sessionFactory;
+        public ISessionFactory SessionFactory { get; set; }
         public ISession Session { get; set; }
 
         public FrameworkSession(string connectionStringName)
         {
             _connectionStringName = connectionStringName;
-            Session = CreateSessionFactory(_connectionStringName).OpenSession();
+             Session = CreateSessionFactory(_connectionStringName).OpenSession();
+             SessionFactory = CreateSessionFactory(_connectionStringName);
         }
 
         private ISessionFactory CreateSessionFactory(string connectionStringName)
         {
-            if (_sessionFactory != null)
+            if (SessionFactory != null)
             {
-                return _sessionFactory;
+                return SessionFactory;
             }
 
-            _sessionFactory = Fluently.Configure()
+            SessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(x => x.FromConnectionStringWithKey(connectionStringName)))
                 .Mappings(x => x.AutoMappings.Add(
                     AutoMap.AssemblyOf<Article>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ArticleOverride>()))
                 .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
                 .BuildSessionFactory();
-            return _sessionFactory;
+            return SessionFactory;
 
         }
     }

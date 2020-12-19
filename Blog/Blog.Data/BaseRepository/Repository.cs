@@ -20,10 +20,8 @@ namespace Blog.Data.BaseRepository
         public Repository(TSession sessionFactory)     
         {
             _session = sessionFactory.Session;
-            session = _session;
+            //session = _session;
         }
-
-        
 
         public virtual void Add(TEntity entity)
         {
