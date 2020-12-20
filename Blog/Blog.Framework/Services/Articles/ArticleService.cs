@@ -1,4 +1,5 @@
 ﻿using Blog.Framework.Entities;
+using Blog.Framework.Exceptions;
 using Blog.Framework.UnitOfWorks;
 using Blog.Framework.UnitOfWorks.Articles;
 using System;
@@ -40,6 +41,13 @@ namespace Blog.Framework.Services.Articles
         //summary
         public void Create(Article article)
         {
+            if (article == null)
+                throw new EntityNullException<Article>();
+
+            int previousArticleCount = _articleUnitOfWork.ArticleRepository.GetCount(x=>x.Title == article.Title);
+            if (previousArticleCount > 0)
+                throw new Exception($"{article.Title} is already there.");
+
             _articleUnitOfWork.BeginTransaction();
             try
             {
