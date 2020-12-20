@@ -43,9 +43,18 @@ namespace Blog.Web.Areas.User.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.CreateArticle();
+                try
+                {
+                    model.CreateArticle();
+                    return RedirectToAction("Index");
+                }catch (Exception e)
+                {
+                    //TODO Add Logger Code
+                    //TODO Add Notification
+                }
             }
-            return RedirectToAction("Index");
+            return View(model);
+
         }
 
         public ActionResult Edit(int id)
