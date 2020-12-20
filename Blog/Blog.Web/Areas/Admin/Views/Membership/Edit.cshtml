@@ -1,5 +1,9 @@
 ﻿@model Blog.Web.Areas.Admin.Models.Membership.MembershipModel
 
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <div class="col-8 align-content-center pt-4">
             <h4>Edit User</h4>
@@ -53,8 +57,8 @@
             </div>
         </div>
     </div>
-    }
+}
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

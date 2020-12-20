@@ -15,7 +15,10 @@ namespace Blog.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = new CategoryModel();
-            model.Categories = model.GetCategories();
+            if (ModelState.IsValid)
+            {
+                model.Categories = model.GetCategories();
+            }
             return View(model);
         }
 
@@ -28,7 +31,10 @@ namespace Blog.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCategoryModel model)
         {
-            model.CreateCategory();
+            if (ModelState.IsValid)
+            {
+                model.CreateCategory();
+            }
             return RedirectToAction("Index");
         }
 
@@ -55,7 +61,10 @@ namespace Blog.Web.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             var model = new CategoryModel();
-            model.Delete(id);
+            if (ModelState.IsValid)
+            {
+                model.Delete(id);
+            }
             return RedirectToAction("Index");
         }
     }

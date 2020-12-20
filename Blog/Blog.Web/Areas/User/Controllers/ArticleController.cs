@@ -41,7 +41,10 @@ namespace Blog.Web.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateArticleModel model)
         {
-            model.CreateArticle();
+            if (ModelState.IsValid)
+            {
+                model.CreateArticle();
+            }
             return RedirectToAction("Index");
         }
 
