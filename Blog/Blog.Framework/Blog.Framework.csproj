@@ -191,6 +191,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Overrides\ArticleOverride.cs" />
     <Compile Include="Entities\Overrides\CategoryOverride.cs" />
+    <Compile Include="Exceptions\EntityNullException.cs" />
     <Compile Include="Menus\MenuChildItem.cs" />
     <Compile Include="Menus\MenuItem.cs" />
     <Compile Include="Modules\FrameworkModule.cs" />
@@ -211,9 +212,7 @@
     <Compile Include="UnitOfWorks\Category\CategoryUnitOfWork.cs" />
     <Compile Include="UnitOfWorks\Category\ICategoryUnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
