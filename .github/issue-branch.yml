@@ -1,3 +1,2 @@
 mode: chatops
-silent: false
 branchName: '${issue.number}-${labels}-${issue.title}'
