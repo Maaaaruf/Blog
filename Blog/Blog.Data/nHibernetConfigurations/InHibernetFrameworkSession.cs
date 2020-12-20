@@ -9,6 +9,7 @@ namespace Blog.Data.nHibernetConfigurations
 {
     public interface InHibernetFrameworkSession
     {
+        public ISessionFactory SessionFactory { get; set; }
         public ISession Session { get; set; }
     }
 }

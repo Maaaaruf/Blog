@@ -40,16 +40,30 @@ namespace Blog.Framework.Services.Articles
         //summary
         public void Create(Article article)
         {
-            _articleUnitOfWork.ArticleRepository.Add(article);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+            try
+            {
+                _articleUnitOfWork.ArticleRepository.Add(article);
+                _articleUnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Update(Article article)
         {
-            _articleUnitOfWork.ArticleRepository.Edit(article);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+            try
+            {
+                _articleUnitOfWork.ArticleRepository.Edit(article);
+                _articleUnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Update(int id)
@@ -64,9 +78,16 @@ namespace Blog.Framework.Services.Articles
 
         public void Remove(int id)
         {
-            _articleUnitOfWork.ArticleRepository.Remove(id);
             _articleUnitOfWork.BeginTransaction();
-            _articleUnitOfWork.Commit();
+            try
+            {
+                _articleUnitOfWork.ArticleRepository.Remove(id);
+                _articleUnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _articleUnitOfWork.Rollback();
+            }
         }
 
         public void Dispose()

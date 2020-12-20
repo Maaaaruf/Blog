@@ -51,7 +51,7 @@ namespace Blog.Framework.Modules
             //summary
             builder.RegisterType<FrameworkSession>().As<InHibernetFrameworkSession>()
                 .WithParameter("connectionStringName", _connectionStringName)
-                .SingleInstance();
+                .InstancePerLifetimeScope();
 
             //summary
             //Bindings for Article
