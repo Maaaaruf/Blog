@@ -50,7 +50,7 @@ namespace Blog.Data.BaseRepository
 
         public virtual int GetCount(Expression<Func<TEntity, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _session.QueryOver<TEntity>().Where(filter).RowCount();
         }
 
         public virtual void Remove(int id)
